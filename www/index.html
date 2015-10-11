@@ -17,7 +17,22 @@
      <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.3/fastclick.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/appframework/build/appframework.ui.js"></script>
-
+        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
+<script>
+    
+    var ros_edison = new ROS_Edison();
+    
+    //---------------------------------
+    //Main jQuery entry point (after loading)
+    //---------------------------------
+    $(function() 
+    {
+        $("#app-status").html("<b>Status:</b> No robot configured");
+        ros_edison.connect();
+    });
+        
+</script>
 </head>
 
 <body>
@@ -38,32 +53,30 @@
         <div class="pages">
 
          <!--Tab View Pages-->
-        <div class="panel" data-title="Home" id="main" data-selected="true">
-            This is view for first Tab
+        <div class="panel" data-title="Home" id="main-panel" data-selected="true">
+            <center><div id="app-status"></div></center>
         </div>
 
-        <div class="panel" data-title="Favorites" id="foobar" >
+        <div class="panel" data-title="Favorites" id="settings-panel" >
             This is view for second Tab
             <br>
             <br>
-             <a href="#about" class="button" data-tab='tab3' data-transition="slide-left">About</a>
+             <a href="#about-panel" class="button" data-tab='tab3' data-transition="slide-left">About</a>
         </div>
 
-        <div class="panel" data-title="Messages" id="about">
-            This is view for third Tab
-        </div>
-
-        <div class="panel" data-title="Profile" id="test">
-            This is view for fourth Tab
+        <div class="panel" data-title="Messages" id="about-panel">
+            <h1>ROS Edison App</h1>
+            <p>Copyright 2015, Christoph Schultz</p>
+            <p>App for connecting to a robot on an Intel Edison platform running ROS.
+            The rosbridge module has to be active.</p>
         </div>
 
         </div>
 
         <footer>
-            <a href="#main" class="icon home" id='tab1' >Main</a>
-            <a href="#foobar" class="icon heart" id='tab2' data-transition="up-reveal">Foobar</a>
-            <a href="#about" class="icon html5" id='tab3' data-transition="slide-left">About</a>
-            <a href="#test" class="icon trash" id='tab4' data-transition="none">test</a>
+            <a href="#main-panel" class="icon home" id='tab1' >Main</a>
+            <a href="#settings-panel" class="icon settings" id='tab2' data-transition="up-reveal">Settings</a>
+            <a href="#about-panel" class="icon info" id='tab3' data-transition="slide-left">About</a>
         </footer>
     </div>
 
