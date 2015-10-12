@@ -21,7 +21,12 @@ ROS_Edison.prototype.connect = function()
     }
     
     var ws_string = "ws://" + this.ip_string + ":" + this.port_string;
-   // this.ros = new ROSLIB.Ros({url: ws_string});
+    this.ros = new ROSLIB.Ros();
     
-    $("#app-status").html("<b>Status:</b> Connected to " + this.ip_string + ":" + this.port_string);
+    this.ros.connect(ws_string);
+    
+    this.ros.once('connection', function() {
+        $("#app-status").html("<b>Status:</b> Connected to " + this.ip_string + ":" + this.port_string);
+    });
+    
 }
