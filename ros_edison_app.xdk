@@ -1,11 +1,11 @@
 {
   "project": {
-    "projectSettingsVersion": "1.2",
+    "projectSettingsVersion": "2.0.0",
     "creationData": {
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww25/webapp/templates-tab-view/sample.zip",
       "projectGuid": "cc6205a1-63ec-4ea3-9243-f4966c1b49bd",
-      "lastModifiedDate": 1444577810398,
+      "lastModifiedDate": 1447574962230,
       "creationDate": 1444577810091
     },
     "sourceDirectory": "www",
@@ -29,11 +29,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -57,11 +60,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -84,11 +90,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -106,11 +115,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -128,11 +140,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -148,11 +163,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -168,11 +186,14 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
@@ -188,21 +209,46 @@
         "isActive_": true,
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
-        "appAccess_": [
-          {
-            "origin": "*"
-          }
-        ],
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [
+            "*"
+          ],
+          "intents": [],
+          "navigation": []
+        },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
+      },
+      "WP81": {
+        "platform_": "wp81",
+        "runtime_": "W3C on Cordova",
+        "name_": "WP81",
+        "preferences_": {},
+        "isActive_": true,
+        "appName_": "ros_edison_app",
+        "appID_": "not.yet.specified",
+        "appAccess_": {
+          "mode": "legacy",
+          "network": [],
+          "intents": [],
+          "navigation": []
+        },
+        "icons_": [],
+        "splashes_": [],
+        "addlPermissions_": "",
+        "excludedLibraries_": "",
+        "appVersion_": "0.0.0.1",
+        "cordovaCLIVersion_": "5.1.1"
       }
     },
     "gameAssetDirectory": "asset",
     "gameMetadata": {},
-    "projectTags": []
+    "projectTags": [],
+    "testDirectory": "test"
   }
 }

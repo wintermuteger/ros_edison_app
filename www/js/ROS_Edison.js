@@ -3,7 +3,7 @@
 //-------------------------------------
 function ROS_Edison()
 {
-    this.ip_string = "127.0.0.1";
+    this.ip_string = "192.168.178.40";
     this.port_string = "9090";
     this.ros = null;
 }
@@ -13,7 +13,7 @@ function ROS_Edison()
 //-------------------------------------
 ROS_Edison.prototype.connect = function()
 {
-    if(this.ros != null)
+    if(this.ros !== null)
     {
         //Shutdown connection
         //TBD
@@ -29,4 +29,4 @@ ROS_Edison.prototype.connect = function()
         $("#app-status").html("<b>Status:</b> Connected to " + this.ip_string + ":" + this.port_string);
     });
     
-}
+};
