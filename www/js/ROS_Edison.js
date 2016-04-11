@@ -6,6 +6,7 @@ function ROS_Edison()
     this.ip_string = "192.168.178.40";
     this.port_string = "9090";
     this.ros = null;
+    this.top_vbat = null;
 }
 
 //-------------------------------------
@@ -23,10 +24,21 @@ ROS_Edison.prototype.connect = function()
     var ws_string = "ws://" + this.ip_string + ":" + this.port_string;
     this.ros = new ROSLIB.Ros();
     
-    this.ros.connect(ws_string);
-    
-    this.ros.once('connection', function() {
-        $("#app-status").html("<b>Status:</b> Connected to " + this.ip_string + ":" + this.port_string);
+    //Prepare subscriptions to be established
+    this.top_vbat = new ROSLIB.Topic({ros : this.ros,
+                                          name: '/bat_volt',
+                                          messageType: 'std_msgs/Float32'
+                                         });
+    this.top_vbat.subscribe(function(msg){
+        $("#vbat").html(msg.data + "V");
     });
     
+    this.ros.connect(ws_string);
+    
+    var that = this;
+    
+    this.ros.once('connection', function() {
+        //Update status
+        $("#app-status").html("<b>Status:</b> Connected to " + that.ip_string + ":" + that.port_string);
+    });
 };

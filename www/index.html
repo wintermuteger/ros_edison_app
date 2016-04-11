@@ -13,14 +13,13 @@
     <link rel="stylesheet" type="text/css" href="../www/appframework/build/icons.css" />
     <link rel="stylesheet" type="text/css" href="../www/appframework/build/af.ui.css" />
 
-
-     <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.3/fastclick.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/appframework/build/appframework.ui.js"></script>
-        <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/0.4.14/eventemitter2.min.js"></script>
-        <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+    <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/0.4.14/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
-<script>
+    <script>
     
     var ros_edison = new ROS_Edison();
     
@@ -30,10 +29,11 @@
     $(function() 
     {
         $("#app-status").html("<b>Status:</b> No robot configured");
+        $("#vbat").html("--V");
         ros_edison.connect();
     });
         
-</script>
+    </script>
 </head>
 
 <body>
@@ -56,6 +56,7 @@
          <!--Tab View Pages-->
         <div class="panel" data-title="Home" id="main-panel" data-selected="true">
             <center><div id="app-status"></div></center>
+            <center><div id="vbat"></div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >
