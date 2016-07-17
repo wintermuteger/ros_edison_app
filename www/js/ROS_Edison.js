@@ -23,16 +23,7 @@ ROS_Edison.prototype.connect = function()
     
     var ws_string = "ws://" + this.ip_string + ":" + this.port_string;
     this.ros = new ROSLIB.Ros();
-    
-    //Prepare subscriptions to be established
-    this.top_vbat = new ROSLIB.Topic({ros : this.ros,
-                                          name: '/bat_volt',
-                                          messageType: 'std_msgs/Float32'
-                                         });
-    this.top_vbat.subscribe(function(msg){
-        $("#vbat").html(msg.data + "V");
-    });
-    
+
     this.ros.connect(ws_string);
     
     var that = this;
@@ -40,5 +31,18 @@ ROS_Edison.prototype.connect = function()
     this.ros.once('connection', function() {
         //Update status
         $("#app-status").html("<b>Status:</b> Connected to " + that.ip_string + ":" + that.port_string);
+        
+        //Prepare subscriptions to be established
+        that.top_vbat = new ROSLIB.Topic({ros : that.ros,
+                                          name: 'bat_volt',
+                                          messageType: 'std_msgs/Float32',
+                                         });
+        //Subscribe to topic
+        that.top_vbat.subscribe(vbat_callback);
+    
     });
 };
+
+function vbat_callback(msg) {
+            $("#vbat").html(msg.data + "V");
+}
