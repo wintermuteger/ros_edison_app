@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww25/webapp/templates-tab-view/sample.zip",
       "projectGuid": "cc6205a1-63ec-4ea3-9243-f4966c1b49bd",
-      "lastModifiedDate": 1469389162248,
+      "lastModifiedDate": 1469395708953,
       "creationDate": 1444577810091
     },
     "sourceDirectory": "www",

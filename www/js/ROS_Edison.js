@@ -1,12 +1,20 @@
 //-------------------------------------
 //Constructor for ROS_Edison object
 //-------------------------------------
-function ROS_Edison()
+function ROS_Edison(param)
 {
-    this.ip_string = "192.168.178.40";
+    this.ip_string = "";
     this.port_string = "9090";
     this.ros = null;
     this.top_vbat = null;
+    
+    if(typeof param !== 'undefined')
+    {
+            for(var property in param)
+            {
+                this[property] = param[property];       
+            }
+    }
 }
 
 //-------------------------------------
@@ -14,6 +22,9 @@ function ROS_Edison()
 //-------------------------------------
 ROS_Edison.prototype.connect = function()
 {
+    //
+    //Establish a connection to rosbridge websockets
+    //
     if(this.ros !== null)
     {
         //Shutdown connection
@@ -29,6 +40,10 @@ ROS_Edison.prototype.connect = function()
     var that = this;
     
     this.ros.once('connection', function() {
+        //
+        //!Connected!
+        //
+        
         //Update status
         $("#app-status").html("<b>Status:</b> Connected to " + that.ip_string + ":" + that.port_string);
         
@@ -38,11 +53,13 @@ ROS_Edison.prototype.connect = function()
                                           messageType: 'std_msgs/Float32',
                                          });
         //Subscribe to topic
-        that.top_vbat.subscribe(vbat_callback);
-    
+        that.top_vbat.subscribe(ROS_Edison.vbat_callback);
     });
 };
 
-function vbat_callback(msg) {
+//-------------------------------------
+//Callback if VBAT is received - Static function!
+//-------------------------------------
+ROS_Edison.vbat_callback = function(msg) {
             $("#vbat").html(msg.data + "V");
 }

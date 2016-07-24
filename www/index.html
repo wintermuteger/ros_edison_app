@@ -21,15 +21,17 @@
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
     <script>
     
-    var ros_edison = new ROS_Edison();
+    var ros_edison = new ROS_Edison({ip_string: "192.168.178.40", port_string: "9090"});
     
     //---------------------------------
     //Main jQuery entry point (after loading)
     //---------------------------------
     $(function() 
     {
+        //Reset strings
         $("#app-status").html("<b>Status:</b> No robot configured");
         $("#vbat").html("--V");
+        //Connect ROS Object
         ros_edison.connect();
     });
         
