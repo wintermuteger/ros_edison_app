@@ -30,7 +30,9 @@
     {
         //Reset strings
         $("#app-status").html("<b>Status:</b> No robot configured");
-        $("#vbat").html("--V");
+        $("#vbat").html("VBAT: --V");
+        $("#cpuload").html("CPU load: --%s");
+        $("#camera").html("<CAMERA-IMAGE>");
         //Connect ROS Object
         ros_edison.connect();
     });
@@ -59,6 +61,8 @@
         <div class="panel" data-title="Home" id="main-panel" data-selected="true">
             <center><div id="app-status"></div></center>
             <center><div id="vbat"></div></center>
+            <center><div id="cpuload"></div></center>
+            <center><div id="camera"></div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >

@@ -7,6 +7,8 @@ function ROS_Edison(param)
     this.port_string = "9090";
     this.ros = null;
     this.top_vbat = null;
+    this.top_cpuload = null;
+    this.top_camera = null;
     
     if(typeof param !== 'undefined')
     {
@@ -52,8 +54,19 @@ ROS_Edison.prototype.connect = function()
                                           name: 'bat_volt',
                                           messageType: 'std_msgs/Float32',
                                          });
+        that.top_cpuload = new ROSLIB.Topic({ros : that.ros,
+                                          name: 'cpu_load',
+                                          messageType: 'std_msgs/Float32',
+                                         });
+        that.top_camera = new ROSLIB.Topic({ros : that.ros,
+                                          name: '/v4l/camera/image_raw',
+                                          messageType: 'sensor_msgs/Image',
+                                         });
+        
         //Subscribe to topic
         that.top_vbat.subscribe(ROS_Edison.vbat_callback);
+        that.top_cpuload.subscribe(ROS_Edison.cpuload_callback);
+        that.top_camera.subscribe(ROS_Edison.camera_callback);
     });
 };
 
@@ -61,5 +74,19 @@ ROS_Edison.prototype.connect = function()
 //Callback if VBAT is received - Static function!
 //-------------------------------------
 ROS_Edison.vbat_callback = function(msg) {
-            $("#vbat").html(msg.data + "V");
+            $("#vbat").html("VBAT: " + Math.round(msg.data*100)/100 + "V");
+}
+
+//-------------------------------------
+//Callback if CPU load is received - Static function!
+//-------------------------------------
+ROS_Edison.cpuload_callback = function(msg) {
+            $("#cpuload").html("CPU load: " + Math.round(msg.data*1000)/10 + "%");
+}
+
+//-------------------------------------
+//Callback if camera image is received - Static function!
+//-------------------------------------
+ROS_Edison.camera_callback = function(msg) {
+            $("#camera").html("Image received!");
 }
