@@ -32,9 +32,23 @@
         $("#app-status").html("<b>Status:</b> No robot configured");
         $("#vbat").html("VBAT: --V");
         $("#cpuload").html("CPU load: --%s");
-        $("#camera").html("<CAMERA-IMAGE>");
         //Connect ROS Object
         ros_edison.connect();
+        
+        /*//Test code for image drawing
+        var img_arr = "";
+        for(var x = 0; x < 320; x ++)
+            {
+                for(var y = 0; y < 240; y ++)
+                    {
+                        img_arr += String.fromCharCode((x+y)%255);
+                        img_arr += String.fromCharCode((x+y)%255);
+                        img_arr += String.fromCharCode((x+y)%255);
+                        img_arr += String.fromCharCode((x+y)%255);
+                    }
+            }
+        
+        ROS_Edison.camera_callback(img_arr);*/
     });
         
     </script>
@@ -62,7 +76,7 @@
             <center><div id="app-status"></div></center>
             <center><div id="vbat"></div></center>
             <center><div id="cpuload"></div></center>
-            <center><div id="camera"></div></center>
+            <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >

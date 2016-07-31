@@ -73,20 +73,51 @@ ROS_Edison.prototype.connect = function()
 //-------------------------------------
 //Callback if VBAT is received - Static function!
 //-------------------------------------
-ROS_Edison.vbat_callback = function(msg) {
-            $("#vbat").html("VBAT: " + Math.round(msg.data*100)/100 + "V");
+ROS_Edison.vbat_callback = function(msg) 
+{
+    $("#vbat").html("VBAT: " + Math.round(msg.data*100)/100 + "V");
 }
 
 //-------------------------------------
 //Callback if CPU load is received - Static function!
 //-------------------------------------
-ROS_Edison.cpuload_callback = function(msg) {
-            $("#cpuload").html("CPU load: " + Math.round(msg.data*1000)/10 + "%");
+ROS_Edison.cpuload_callback = function(msg) 
+{
+    $("#cpuload").html("CPU load: " + Math.round(msg.data*1000)/10 + "%");
 }
 
+
+ROS_Edison.context = null;
 //-------------------------------------
 //Callback if camera image is received - Static function!
 //-------------------------------------
-ROS_Edison.camera_callback = function(msg) {
-            $("#camera").html("Image received!");
+ROS_Edison.camera_callback = function(msg) 
+{   
+    //Get context for drawing (once)
+    if(ROS_Edison.context == null)
+    {
+        ROS_Edison.context = $("#camcan")[0].getContext('2d');   
+    }
+    
+    //Generate image object to hold the image data
+    var img = new ImageData(str2ui8ca(msg.data),320,240);
+    
+    ROS_Edison.context.putImageData(img,0,0);
+    
+}
+
+function str2ui8ca(str) {
+  var buf = new ArrayBuffer(str.length); // 2 bytes for each char
+  var bufView = new Uint8ClampedArray(buf);
+  var bufind = 0;
+  for (var i=0, strLen=str.length; i<strLen; i++) {
+    bufView[bufind] = str.charCodeAt(i);
+    bufind ++;
+    /*if((i+1)%3==0) //Stuff a 4th byte for every tripple
+    {
+        bufView[bufind] = 255;
+        bufind ++;    
+    }*/
+  }
+  return bufView;
 }
