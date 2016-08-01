@@ -113,11 +113,6 @@ function str2ui8ca(str) {
   for (var i=0, strLen=str.length; i<strLen; i++) {
     bufView[bufind] = str.charCodeAt(i);
     bufind ++;
-    /*if((i+1)%3==0) //Stuff a 4th byte for every tripple
-    {
-        bufView[bufind] = 255;
-        bufind ++;    
-    }*/
   }
   return bufView;
 }

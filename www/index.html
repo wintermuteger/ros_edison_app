@@ -34,21 +34,6 @@
         $("#cpuload").html("CPU load: --%s");
         //Connect ROS Object
         ros_edison.connect();
-        
-        /*//Test code for image drawing
-        var img_arr = "";
-        for(var x = 0; x < 320; x ++)
-            {
-                for(var y = 0; y < 240; y ++)
-                    {
-                        img_arr += String.fromCharCode((x+y)%255);
-                        img_arr += String.fromCharCode((x+y)%255);
-                        img_arr += String.fromCharCode((x+y)%255);
-                        img_arr += String.fromCharCode((x+y)%255);
-                    }
-            }
-        
-        ROS_Edison.camera_callback(img_arr);*/
     });
         
     </script>
