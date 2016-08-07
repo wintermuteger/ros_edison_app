@@ -110,9 +110,19 @@ function str2ui8ca(str) {
   var buf = new ArrayBuffer(str.length); // 2 bytes for each char
   var bufView = new Uint8ClampedArray(buf);
   var bufind = 0;
-  for (var i=0, strLen=str.length; i<strLen; i++) {
-    bufView[bufind] = str.charCodeAt(i);
-    bufind ++;
+  for (var i=0, strLen=str.length; i<strLen; i+=4) {
+    /*bufView[bufind+0] = str.charCodeAt(i+0)+str.charCodeAt(i+2)/0.877;
+    bufView[bufind+2] = str.charCodeAt(i+0)+str.charCodeAt(i+1)/0.493;
+    bufView[bufind+1] = 1.704*str.charCodeAt(i+0)-0.509*bufView[bufind+0]-0.194*bufView[bufind+2];*/
+    bufView[bufind+0] = str.charCodeAt(i+0);
+    bufView[bufind+1] = str.charCodeAt(i+0);
+    bufView[bufind+2] = str.charCodeAt(i+0);
+    bufView[bufind+3] = 255;
+   /* bufView[bufind+0] = str.charCodeAt(i+0)+str.charCodeAt(i+1);
+    bufView[bufind+2] = bufView[bufind+0];
+    bufView[bufind+1] = bufView[bufind+0];*/
+    //bufView[bufind+3] = 255;
+    bufind += 4;
   }
   return bufView;
 }
