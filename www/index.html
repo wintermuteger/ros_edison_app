@@ -18,6 +18,7 @@
     <script type="text/javascript" charset="utf-8" src="../www/appframework/build/appframework.ui.js"></script>
     <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/0.4.14/eventemitter2.js"></script>
     <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Gamepad.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
     <script>
     
@@ -61,7 +62,9 @@
             <center><div id="app-status"></div></center>
             <center><div id="vbat"></div></center>
             <center><div id="cpuload"></div></center>
-            <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div></center>
+            <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div>
+            </center>
+            <center><div id="gamepadstatus">No gamepad connected!</div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >

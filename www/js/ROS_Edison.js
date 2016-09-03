@@ -10,6 +10,11 @@ function ROS_Edison(param)
     this.top_cpuload = null;
     this.top_camera = null;
     
+    if(typeof ros_gamepad !== "undefined")
+    {
+        ros_gamepad.linkROSEdison(this.gamepadUpdated);        
+    }
+    
     if(typeof param !== 'undefined')
     {
             for(var property in param)
@@ -119,4 +124,11 @@ function str2ui8ca(str) {
     bufind += 4;
   }
   return bufView;
+}
+
+ROS_Edison.prototype.gamepadUpdated = function(gp_obj)
+{
+    var x = gp_obj.axes[0];
+    var y = gp_obj.axes[1];
+    $("#gamepadstatus").html("X:" + x + "/y: " + y);
 }
