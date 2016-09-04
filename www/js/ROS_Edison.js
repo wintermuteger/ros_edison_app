@@ -9,10 +9,12 @@ function ROS_Edison(param)
     this.top_vbat = null;
     this.top_cpuload = null;
     this.top_camera = null;
+    this.top_engineA = null;
+    this.top_engineB = null;
     
     if(typeof ros_gamepad !== "undefined")
     {
-        ros_gamepad.linkROSEdison(this.gamepadUpdated);        
+        ros_gamepad.linkROSEdison(this.gamepadUpdated, this);        
     }
     
     if(typeof param !== 'undefined')
@@ -67,6 +69,14 @@ ROS_Edison.prototype.connect = function()
                                           name: '/v4l/camera/image_raw',
                                           messageType: 'sensor_msgs/Image',
                                          });
+        that.top_engineA = new ROSLIB.Topic({ros : that.ros,
+                                          name: '/engineA',
+                                          messageType: 'std_msgs/Float32',
+                                        });
+        that.top_engineB = new ROSLIB.Topic({ros : that.ros,
+                                          name: '/engineB',
+                                          messageType: 'std_msgs/Float32',
+                                        });
         
         //Subscribe to topic
         that.top_vbat.subscribe(ROS_Edison.vbat_callback);
@@ -91,11 +101,13 @@ ROS_Edison.cpuload_callback = function(msg)
     $("#cpuload").html("CPU load: " + Math.round(msg.data*1000)/10 + "%");
 }
 
-
-ROS_Edison.context = null;
 //-------------------------------------
 //Callback if camera image is received - Static function!
 //-------------------------------------
+
+//Global variable to hold the camera context to simplify access
+ROS_Edison.context = null;
+
 ROS_Edison.camera_callback = function(msg) 
 {   
     //Get context for drawing (once)
@@ -126,9 +138,26 @@ function str2ui8ca(str) {
   return bufView;
 }
 
-ROS_Edison.prototype.gamepadUpdated = function(gp_obj)
+ROS_Edison.prototype.gamepadUpdated = function(rosobj)
 {
-    var x = gp_obj.axes[0];
-    var y = gp_obj.axes[1];
+    var x = this.axes[0];
+    var y = this.axes[1];
     $("#gamepadstatus").html("X:" + x + "/y: " + y);
+    
+    if(rosobj.top_engineA !== null && rosobj.top_engineB !== null)
+    {
+        var engA = -y+x;
+        var engB = -y-x;
+        
+        var engA_msg = new ROSLIB.Message({
+            data: engA
+        });
+        var engB_msg = new ROSLIB.Message({
+            data: engB
+        });
+        
+        rosobj.top_engineA.publish(engA_msg);
+        rosobj.top_engineB.publish(engB_msg);
+    }
+    
 }

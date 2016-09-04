@@ -7,6 +7,7 @@ function ROS_Gamepad()
     this.gamepad = null;
     this.axes = [0, 0];
     this.ros_edison_callback = null;
+    this.rosobj = null;
     
      var gamepadSupportAvailable = !!navigator.webkitGetGamepads || 
       !!navigator.webkitGamepads ||
@@ -16,9 +17,10 @@ function ROS_Gamepad()
     window.addEventListener('gamepadconnected', ROS_Gamepad.gamepadConnected, false);
 }
 
-ROS_Gamepad.prototype.linkROSEdison = function(cb)
+ROS_Gamepad.prototype.linkROSEdison = function(cb, obj)
 {
     this.ros_edison_callback = cb;
+    this.rosobj = obj;
 }
 
 ROS_Gamepad.gamepadConnected = function(evt)
@@ -48,7 +50,7 @@ ROS_Gamepad.runAnimation = function()
         
         if(ros_gamepad.ros_edison_callback != null)
         {
-            ros_gamepad.ros_edison_callback(ros_gamepad);
+            ros_gamepad.ros_edison_callback(ros_gamepad.rosobj);
         }
     }
     else //Terminate object
