@@ -18,12 +18,15 @@
     <script type="text/javascript" charset="utf-8" src="../www/appframework/build/appframework.ui.js"></script>
     <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/0.4.14/eventemitter2.js"></script>
     <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Touchpad.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Gamepad.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
     <script>
     
     var ros_edison = new ROS_Edison({ip_string: "192.168.178.40", port_string: "9090"});
     
+    var ros_touchpad = new ROS_Touchpad($("#touchpad"));
+        
     //---------------------------------
     //Main jQuery entry point (after loading)
     //---------------------------------
@@ -65,6 +68,7 @@
             <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div>
             </center>
             <center><div id="gamepadstatus">No gamepad connected!</div></center>
+            <center><div id="touchpad" width=500 height=500></div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >
