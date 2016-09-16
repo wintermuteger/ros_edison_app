@@ -12,6 +12,9 @@ function ROS_Edison(param)
     this.top_engineA = null;
     this.top_engineB = null;
     
+    this.lastX = Infinity;
+    this.lastY = Infinity;
+    
     if(typeof ros_gamepad !== "undefined")
     {
         ros_gamepad.linkROSEdison(this.gamepadUpdated, this);        
@@ -142,22 +145,42 @@ ROS_Edison.prototype.gamepadUpdated = function(rosobj)
 {
     var x = this.axes[0];
     var y = this.axes[1];
+    
+    
+    //Quantize into distinct levels
+    if(Math.abs(x) > Math.abs(y))
+    {
+        x = Math.round(3*x)/3;
+        y = 0;
+    }
+    else //x < y
+    {
+        x = 0;
+        y = Math.round(3*y)/3;
+    }
+    
     $("#gamepadstatus").html("X:" + x + "/y: " + y);
     
     if(rosobj.top_engineA !== null && rosobj.top_engineB !== null)
     {
-        var engA = -y+x;
-        var engB = -y-x;
-        
-        var engA_msg = new ROSLIB.Message({
-            data: engA
-        });
-        var engB_msg = new ROSLIB.Message({
-            data: engB
-        });
-        
-        rosobj.top_engineA.publish(engA_msg);
-        rosobj.top_engineB.publish(engB_msg);
+        if(rosobj.lastX != x || rosobj.lastY != y)
+        {   
+            var engA = -y+x;
+            var engB = -y-x;
+
+            var engA_msg = new ROSLIB.Message({
+                data: engA
+            });
+            var engB_msg = new ROSLIB.Message({
+                data: engB
+            });
+
+            rosobj.top_engineA.publish(engA_msg);
+            rosobj.top_engineB.publish(engB_msg);
+            
+            rosobj.lastX = x;
+            rosobj.lastY = y;
+        }
     }
     
 }
