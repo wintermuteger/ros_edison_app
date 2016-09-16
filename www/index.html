@@ -25,7 +25,7 @@
     
     var ros_edison = new ROS_Edison({ip_string: "192.168.178.40", port_string: "9090"});
     
-    var ros_touchpad = new ROS_Touchpad($("#touchpad"));
+    var ros_touchpad = new ROS_Touchpad();
         
     //---------------------------------
     //Main jQuery entry point (after loading)
@@ -38,6 +38,8 @@
         $("#cpuload").html("CPU load: --%s");
         //Connect ROS Object
         ros_edison.connect();
+        //Setup Touchpad
+        ros_touchpad.setup($("#touchpad"));
     });
         
     </script>
@@ -68,7 +70,7 @@
             <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div>
             </center>
             <center><div id="gamepadstatus">No gamepad connected!</div></center>
-            <center><div id="touchpad" width="500" height="500">touch</div></center>
+            <center><div id="touchpad" style="width:500px; height:500px">touch</div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >
@@ -80,7 +82,7 @@
 
         <div class="panel" data-title="Messages" id="about-panel">
             <h1>ROS Edison App</h1>
-            <p>Copyright 2015, Christoph Schultz</p>
+            <p>Copyright 2015-2016, Christoph Schultz</p>
             <p>App for connecting to a robot on an Intel Edison platform running ROS.
             The rosbridge module has to be active.</p>
         </div>
