@@ -17,7 +17,12 @@ function ROS_Edison(param)
     
     if(typeof ros_gamepad !== "undefined")
     {
-        ros_gamepad.linkROSEdison(this.gamepadUpdated, this);        
+        ros_gamepad.linkROSEdison(this.ctrlUpdated, this);        
+    }
+    
+    if(typeof ros_tiltctrl !== "undefined")
+    {
+        ros_tiltctrl.linkROSEdison(this.ctrlUpdated, this);        
     }
     
     if(typeof param !== 'undefined')
@@ -141,7 +146,7 @@ function str2ui8ca(str) {
   return bufView;
 }
 
-ROS_Edison.prototype.gamepadUpdated = function(rosobj)
+ROS_Edison.prototype.ctrlUpdated = function(rosobj)
 {
     var x = this.axes[0];
     var y = this.axes[1];
@@ -159,7 +164,7 @@ ROS_Edison.prototype.gamepadUpdated = function(rosobj)
         y = Math.round(3*y)/3;
     }
     
-    $("#gamepadstatus").html("X:" + x + "/y: " + y);
+    this.$div.html("X:" + x + "/y: " + y);
     
     if(rosobj.top_engineA !== null && rosobj.top_engineB !== null)
     {

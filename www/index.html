@@ -19,6 +19,7 @@
     <script type="text/javascript" src="http://cdn.robotwebtools.org/EventEmitter2/0.4.14/eventemitter2.js"></script>
     <script type="text/javascript" src="http://cdn.robotwebtools.org/roslibjs/current/roslib.js"></script>
     <!--<script type="text/javascript" charset="utf-8" src="../www/js/ROS_Touchpad.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="../www/js/ROS_TiltCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Gamepad.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
     <script>
@@ -36,35 +37,28 @@
         $("#app-status").html("<b>Status:</b> No robot configured");
         $("#vbat").html("VBAT: --V");
         $("#cpuload").html("CPU load: --%s");
-        //Check if tilting is available
-        if (window.DeviceOrientationEvent) 
-        {
-            $("#tiltstatus").text('Tilt control supported! Move device to activate!');
-            window.addEventListener('deviceorientation', activateTilt, false);
-        }
-        else
-        {
-            $("#tiltstatus").css('display', 'none');
-        }
         //Set callback which will deactivate e.g. the tilt, when being called
         ros_gamepad.onConnectCallback = activateGamepad;
         //Configure div of gamepad for display
         ros_gamepad.$div = $("#gamepadstatus");
+        //Set callback which will deactivate e.g. the gamepad, when being called
+        ros_tiltctrl.onConnectCallback = activateTilt;
+        //Configure div of tilt for display
+        ros_tiltctrl.$div = $("#tiltstatus");
         //Connect ROS Object
         ros_edison.connect();
         //Setup Touchpad
         //ros_touchpad.setup($("#touchpad"));
     });
         
-    function activateTilt(event)
+    function activateTilt()
     {
         ros_gamepad.disableGamepadSupport();
-        $("#tiltstatus").text("Tilt active! gamma=" +event.gamma + ";beta="+event.beta+";alpha="+event.alpha);
     }
         
     function activateGamepad()
     {
-        $("#tiltstatus").css("display", "none");
+        ros_tiltctrl.disableTiltSupport();
     }
         
     </script>
@@ -94,9 +88,9 @@
             <center><div id="cpuload"></div></center>
             <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div>
             </center>
-            <center><div id="gamepadstatus">No gamepad connected! Press any button to activate!</div></center>
+            <center><div id="gamepadstatus">No gamepad connected! Press any button to activate...</div></center>
             <!--<center><div id="touchpad" style="width:300px; height:300px">touch</div></center>-->
-            <center><div id="tiltstatus">Tilt detection...</div></center>
+            <center><div id="tiltstatus">Tilt detection! Tilt device to activate...</div></center>
         </div>
 
         <div class="panel" data-title="Favorites" id="settings-panel" >
