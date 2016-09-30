@@ -50,14 +50,10 @@ ROS_TiltCtrl.onTilt = function(event)
 {   
     if(ros_tiltctrl.active)
     {     
-       // ros_tiltctrl.$div.text("Tilt active! gamma=" +event.gamma + ";beta="+event.beta+";alpha="+event.alpha);   
-        
-        //
-        //CONT HERE
-        ros_tiltctrl.axes[0] = 0;
-        ros_tiltctrl.axes[1] = 0;
-        //Derive the x and y control words (unquantized) from the tilting
-        //
+        //Gamma determines the drive level 
+        //Alpha the rotation
+        ros_tiltctrl.axes[1] = event.gamma/90;
+        ros_tiltctrl.axes[0] = (event.alpha-90)/90;
         
         if(ros_tiltctrl.ros_edison_callback != null)
         {
