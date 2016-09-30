@@ -5,7 +5,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "https://appcenter.html5tools-software.intel.com/api/v2.0/redirect/projectrenderers/release-2015-ww25/webapp/templates-tab-view/sample.zip",
       "projectGuid": "cc6205a1-63ec-4ea3-9243-f4966c1b49bd",
-      "lastModifiedDate": 1470171230433,
+      "lastModifiedDate": 1475273281137,
       "creationDate": 1444577810091
     },
     "sourceDirectory": "www",
@@ -34,23 +34,24 @@
           "deployment-target": "6"
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [
             "*"
           ],
           "intents": [],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.4.1",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -60,23 +61,24 @@
         "name_": "Windows8",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
-          "mode": "legacy",
+          "mode": "whitelist",
           "network": [
             "*"
           ],
           "intents": [],
-          "navigation": []
+          "navigation": [],
+          "properties": {}
         },
         "icons_": [],
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.4.1",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -86,6 +88,7 @@
         "name_": "WebApp",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -100,7 +103,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -110,6 +112,7 @@
         "name_": "Firefox",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -124,7 +127,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -134,6 +136,7 @@
         "name_": "Chrome",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -148,7 +151,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -158,6 +160,7 @@
         "name_": "Facebook",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -172,7 +175,6 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.1",
         "appAuthor_": "Intel XDK"
       },
@@ -182,6 +184,7 @@
         "name_": "WP81",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -194,9 +197,8 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "appVersion_": "0.0.0.1",
-        "cordovaCLIVersion_": "5.1.1"
+        "cordovaCLIVersion_": "5.4.1"
       },
       "Android": {
         "platform_": "android",
@@ -208,6 +210,7 @@
           "android-installLocation": "auto"
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "ros_edison_app",
         "appID_": "not.yet.specified",
         "appAccess_": {
@@ -222,9 +225,8 @@
         "splashes_": [],
         "addlPermissions_": "",
         "excludedLibraries_": "",
-        "certificateId_": "",
         "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
+        "cordovaCLIVersion_": "5.4.1",
         "appVersion_": "0.0.1",
         "appVersionCode_": "1",
         "crosswalkVersion_": null,
