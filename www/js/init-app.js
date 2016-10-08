@@ -51,9 +51,11 @@ app.initEvents = function() {
 
     // NOTE: initialize your application code
 
-    // initMyAppCodeNumberOne() ;
-    // initMyAppCodeNumberTwo() ;
-    // initMyAppCodeNumberEtc() ;
+    if(!is_init)
+    {
+        is_init = true;
+        initROSApp();
+    }
 
     // NOTE: initialize your app event handlers, see app.js for a simple event handler example
 

@@ -7,7 +7,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
         <meta charset="UTF-8">
-        <title>Blank App Designer Packaged Web App Project Template</title>
+        <title>ROS Edison Control</title>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
         <!--
@@ -40,7 +40,8 @@
 
         <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
         <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
-        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <script src="http://debug-software.intel.com/target/target-script-min.js#X7iYJ_N2J-XGg8qXWIHGFcGdLupJLc0QjzPKGKgz40U"></script>
+        
 
         <!-- Recommended location for your JavaScript libraries -->
         <!-- These library references (below) are just examples to give you the general idea... -->
@@ -55,13 +56,8 @@
 -->
     <script src="cordova.js" id="xdkJScordova_"></script>
 
-    <script src="js/app.js"></script>
-    <!-- for your event code, see README and file comments for details -->
-    <script src="js/init-app.js"></script>
-    <!-- for your init code, see README and file comments for details -->
-    <script src="xdk/init-dev.js"></script>
     <!-- normalizes device and document ready events, see file for details -->
-     <script type="text/javascript" charset="utf-8" src="../www/jslib/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../www/jslib/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/jslib/fastclick.min.js"></script>
     <script type="text/javascript" src="../www/jslib/eventemitter2.min.js"></script>
     <script type="text/javascript" src="../www/jslib/roslib.min.js"></script>
@@ -69,46 +65,13 @@
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_TiltCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Gamepad.js"></script>
     <script type="text/javascript" charset="utf-8" src="../www/js/ROS_Edison.js"></script>
-    <script>
-    
-    var ros_edison = new ROS_Edison({ip_string: "192.168.178.40", port_string: "9090"});
-    
-    //var ros_touchpad = new ROS_Touchpad();
         
-    //---------------------------------
-    //Main jQuery entry point (after loading)
-    //---------------------------------
-    $(function() 
-    {
-        //Reset strings
-        $("#app-status").html("<b>Status:</b> No robot configured");
-        $("#vbat").html("VBAT: --V");
-        $("#cpuload").html("CPU load: --%s");
-        //Set callback which will deactivate e.g. the tilt, when being called
-        ros_gamepad.onConnectCallback = activateGamepad;
-        //Configure div of gamepad for display
-        ros_gamepad.$div = $("#gamepadstatus");
-        //Set callback which will deactivate e.g. the gamepad, when being called
-        ros_tiltctrl.onConnectCallback = activateTilt;
-        //Configure div of tilt for display
-        ros_tiltctrl.$div = $("#tiltstatus");
-        //Connect ROS Object
-        ros_edison.connect();
-        //Setup Touchpad
-        //ros_touchpad.setup($("#touchpad"));
-    });
-        
-    function activateTilt()
-    {
-        ros_gamepad.disableGamepadSupport();
-    }
-        
-    function activateGamepad()
-    {
-        ros_tiltctrl.disableTiltSupport();
-    }
-        
-    </script>
+    <script src="js/app.js"></script>
+    <!-- for your event code, see README and file comments for details -->
+    <script src="js/init-app.js"></script>
+    <!-- for your init code, see README and file comments for details -->
+    <script src="xdk/init-dev.js"></script>
+
     </head>
 
     <body>
@@ -117,11 +80,8 @@
         <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
         <div class="upage" id="mainpage">
             <div class="upage-outer">
-                <div class="upage-content ac0 content-area vertical-col left"></div>
-                <div class="uib-footer uib-footer-fixed footer-bg container-group inner-element uib_w_1" data-uib="layout/footer" data-ver="0">
-                    <h2></h2>
-                    <div class="widget-container wrapping-col single-centered">
-                        <center><div id="app-status"></div></center>
+                <div class="upage-content ac0 content-area vertical-col left">
+                <center><div id="app-status"></div></center>
                         <center><div id="vbat"></div></center>
                         <center><div id="cpuload"></div></center>
                         <center><div id="camera"><canvas width="320" height="240" id="camcan"></canvas></div>
@@ -129,7 +89,10 @@
                         <center><div id="gamepadstatus">No gamepad connected! Press any button to activate...</div></center>
                         <!--<center><div id="touchpad" style="width:300px; height:300px">touch</div></center>-->
                         <center><div id="tiltstatus">Tilt detection! Tilt device to activate...</div></center>
-                        </div>
+                </div>
+                <div class="uib-footer uib-footer-fixed footer-bg container-group inner-element uib_w_1" data-uib="layout/footer" data-ver="0">
+                    <h2></h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
                     <div class="widget-container content-area horiz-area wrapping-col left">
                         <button class="btn widget uib_w_2 btn-default d-margins" data-uib="twitter%20bootstrap/button" data-ver="1">Button</button>
                         <button class="btn widget uib_w_3 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">Button</button>
