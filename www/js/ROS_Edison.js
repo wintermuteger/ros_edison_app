@@ -76,6 +76,8 @@ ROS_Edison.prototype.connect = function()
         that.top_camera = new ROSLIB.Topic({ros : that.ros,
                                           name: '/v4l/camera/image_raw',
                                           messageType: 'sensor_msgs/Image',
+                                          queue_size: 0,
+                                          queue_length: 0
                                          });
         that.top_engineA = new ROSLIB.Topic({ros : that.ros,
                                           name: '/engineA',
